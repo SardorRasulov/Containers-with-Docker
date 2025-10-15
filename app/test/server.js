@@ -23,9 +23,11 @@ app.get('/profile-picture', function (req, res) {
 // use when starting application locally with node command
 let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
 
+console.log("mongoUrlLocal", mongoUrlLocal)
+
 // use when starting application as docker container, part of docker-compose
 let mongoUrlDockerCompose = "mongodb://admin:password@mongodb";
-
+console.log("mongoUrlLocal", mongoUrlDockerCompose)
 // pass these options to mongo client connect request to avoid DeprecationWarning for current Server Discovery and Monitoring engine
 let mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
@@ -36,7 +38,7 @@ let collectionName = "users";
 app.get('/get-profile', function (req, res) {
   let response = {};
   // Connect to the db using local application or docker compose variable in connection properties
-  MongoClient.connect(mongoUrlLocal, mongoClientOptions, function (err, client) {
+  MongoClient.connect(mongoUrlDockerCompose, mongoClientOptions, function (err, client) {
     if (err) throw err;
 
     let db = client.db(databaseName);
@@ -57,7 +59,7 @@ app.get('/get-profile', function (req, res) {
 app.post('/update-profile', function (req, res) {
   let userObj = req.body;
   // Connect to the db using local application or docker compose variable in connection properties
-  MongoClient.connect(mongoUrlLocal, mongoClientOptions, function (err, client) {
+  MongoClient.connect(mongoUrlDockerCompose, mongoClientOptions, function (err, client) {
     if (err) throw err;
 
     let db = client.db(databaseName);
