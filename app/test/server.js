@@ -23,11 +23,9 @@ app.get('/profile-picture', function (req, res) {
 // use when starting application locally with node command
 let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
 
-console.log("mongoUrlLocal", mongoUrlLocal)
 
 // use when starting application as docker container, part of docker-compose
 let mongoUrlDockerCompose = "mongodb://admin:password@mongodb";
-console.log("mongoUrlLocal", mongoUrlDockerCompose)
 // pass these options to mongo client connect request to avoid DeprecationWarning for current Server Discovery and Monitoring engine
 let mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
